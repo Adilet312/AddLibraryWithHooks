@@ -21,7 +21,13 @@ body{
   border-bottom: 1px solid lightgrey;
   position: relative;
 }
-
+.output ul li span{
+  position: absolute;
+  font-size: 30px;
+  top:80px;
+  right:20px;
+  color:#fff;
+}
 .output ul li h2{
   color: #fff;
   font-family: Merienda One;

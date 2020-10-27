@@ -1,0 +1,8 @@
+
+.add-book span{
+  position: absolute;
+  font-size: 60px;
+  left:10px;
+  top:5px;
+  color:white;
+}
