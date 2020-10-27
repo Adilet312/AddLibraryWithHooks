@@ -1,0 +1,14 @@
+
+.searchBox{
+  margin: 0 auto;
+}
+.inputData{
+  width:50%;
+  background: #fff;
+  height:40px;
+  position: relative;
+  left:25%;
+}
+.inputData:focus{
+  outline-color: none;
+}

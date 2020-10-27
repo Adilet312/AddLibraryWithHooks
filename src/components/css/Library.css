@@ -1,0 +1,36 @@
+body{
+  background: #eff3f9;
+}
+.output{
+  width: 70%;
+  margin: 0 auto;
+  border-top: 3px dotted #fff;
+}
+.output ul{
+  list-style: none;
+  margin: 0px;
+  padding: 0px
+}
+
+.output ul li{
+  width:100%;
+  background:linear-gradient(100deg,rgb(103,66,150),rgb(54,28,88));
+  padding: 1em;
+  margin:0px;
+  height:180px;
+  border-bottom: 1px solid lightgrey;
+  position: relative;
+}
+
+.output ul li h2{
+  color: #fff;
+  font-family: Merienda One;
+}
+.output ul li p{
+  font-size: 16px;
+  color: #fff;
+ font-family: Merienda One;
+}
+.output ul li .deleteIcon {
+  color: #fff;
+}
