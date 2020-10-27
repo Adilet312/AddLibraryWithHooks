@@ -57,3 +57,6 @@
     margin: 1em;
     flex:1 0 550px;
   }
+ .add-form .login-form{
+   display: none;
+ }

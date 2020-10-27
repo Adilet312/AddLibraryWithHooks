@@ -1,13 +1,14 @@
 
-.searchBox{
-  margin: 0 auto;
-}
 .inputData{
-  width:50%;
-  background: #fff;
-  height:40px;
-  position: relative;
-  left:25%;
+  background:#fff;
+  height:50px;
+  width:568px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 .inputData:focus{
   outline-color: none;
