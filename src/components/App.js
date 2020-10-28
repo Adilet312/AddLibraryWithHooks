@@ -1,31 +1,49 @@
 import React,{useState,useEffect} from 'react';
-import {without} from 'lodash';
+import {without,findIndex} from 'lodash';
 import Library from './Library.js';
 import SortedBooks from './SortedBooks.js';
 import AddBook from './AddBook.js';
 import './css/App.css';
 const App = () =>{
 	const [ getBookList, setBookList ] = useState([]);
-	const [ getSortBy, setSortBy] = useState('descending');
-	const [ toggle, setToggle] = useState(true);
+	const [ getSortBy, setSortBy ] = useState('descending');
+	const [ toggle, setToggle ] = useState(true);
+	const [ indexId, setIndexId ] = useState(0);
 	useEffect(() =>{
 		fetch('./bookList.json')
 		.then( data => data.json())
-		.then( data => setBookList(data))
+		.then( data => {
+			let currentIndex = indexId;
+			data.map( book => {
+				book.bookId = currentIndex++;
+				return(book)
+			})
+			setIndexId(currentIndex)
+			setBookList(data)
+
+		})
 		.catch( error => console.log(error));
 	},[])
-	const getBook = (event,new_book) => {
+	const addBook = (event,new_book) => {
 		event.preventDefault();
 		setBookList([...getBookList,new_book]);
 	}
+
 	const deleteBook = (book) =>{
 		let tempBooks = without(getBookList,book);
 		setBookList(tempBooks);
 	}
+
+	const updateBook = (key,value,id) =>{
+		let tempBooks  = getBookList;
+		let findCurrentBookIndex = findIndex(tempBooks,{bookId: id});
+		tempBooks[findCurrentBookIndex][key] = value;
+		setBookList(tempBooks);
+	}
 	return(
 				<React.Fragment>
-						<AddBook sendBook = {getBook}/>
-						<SortedBooks  bookList = {getBookList}  sortBy = {getSortBy} deleteBook = {deleteBook}/>
+						<AddBook sendBook = {addBook}/>
+						<SortedBooks  bookList = {getBookList}  sortBy = {getSortBy} deleteBook = {deleteBook} updateBookProperties = {updateBook}/>
 				</React.Fragment>
 	)
 }
@@ -34,19 +52,5 @@ export default App;
 1.List all the books
 2.Sort books by ascending and descending order
 3.Search
-<div className = 'add-book'><span className = 'add open' onClick = { (event) => {
-	let spanClass = event.target.classList;
-	if(spanClass.contains('open') ){
-		spanClass.remove('open');
-		event.target.innerText = "-";
-		spanClass.add('close');
-	}
-	else{
-		spanClass.remove('close');
-		event.target.innerText = "+";
-		spanClass.add('open');
-	}
 
-}
-}>+</span></div>
 */
