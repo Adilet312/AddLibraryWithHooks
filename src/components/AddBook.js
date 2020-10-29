@@ -1,16 +1,20 @@
 import React,{useState} from 'react';
 import './css/AddBook.css';
+import { GoPlus } from 'react-icons/go';
+import { FaMinus } from 'react-icons/fa';
 const AddBook = ({sendBook}) =>{
-  const [ title, setTitle] = useState('');
-  const [ author, setAuthor] = useState('');
-  const [ pages, setPages] = useState(0);
+  const [ title, setTitle ] = useState('');
+  const [ author, setAuthor ] = useState('');
+  const [ pages, setPages ] = useState(0);
+  const [icon, setIcon ] = useState(false);
   return(
   <div className = "add-form">
       <div className = "add-book">
       <h3  onClick = {(event) => {
         let display = event.target.parentNode.parentNode.classList;
         display.toggle('add-form');
-      }}>+ Add Book</h3>
+        setIcon(!icon);
+      }}>{icon ? <FaMinus/> : <GoPlus/>} Add Book</h3>
       </div>
       <form className = "login-form" onSubmit = {(e)=> {
         sendBook(e,{ title: title, author: author, pages: pages});
